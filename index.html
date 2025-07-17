@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belure</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+        }
+
+        #root {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Main Component */
+        .main-container {
+            background-color: #ffffff;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Header */
+        .header-container {
+            background-color: #ffffff;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0 35px;
+        }
+
+        .header-content {
+            height: 87px;
+            position: relative;
+            width: 100%;
+        }
+
+        .logo-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            width: 238px;
+        }
+
+        .logo-content {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+            width: 100%;
+        }
+
+        .logo-image {
+            background-image: url('http://localhost:3845/assets/2b2858790bc64269dfc98c4c5423ac9b842a78f2.png');
+            background-size: 357.14% 250.63%;
+            background-position: 50% 41.1%;
+            background-repeat: no-repeat;
+            height: 64px;
+            width: 45px;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant', serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 50px;
+            color: #222222;
+            white-space: pre;
+        }
+
+        .button-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            position: absolute;
+            top: 19.5px;
+            right: 0;
+        }
+
+        .login-button {
+            height: 48px;
+            position: relative;
+            border-radius: 8px;
+            width: 120px;
+            border: 1px solid #a6937c;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .login-button-text {
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #a6937c;
+            white-space: pre;
+        }
+
+        .signup-button {
+            background-color: #a6937c;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.08);
+            width: 120px;
+            cursor: pointer;
+        }
+
+        .signup-button-text {
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+            white-space: pre;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background-color: #f4ede2;
+            height: 80px;
+            position: absolute;
+            top: 87px;
+            left: 0;
+            width: 100%;
+            overflow: clip;
+        }
+
+        .nav-content {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 500;
+            gap: 150px;
+            align-items: center;
+            justify-content: flex-start;
+            position: absolute;
+            top: 23px;
+            left: 97px;
+            color: #222222;
+            font-size: 24px;
+            white-space: pre;
+        }
+
+        /* Slogan */
+        .slogan-container {
+            height: 825px;
+            position: absolute;
+            top: 167px;
+            left: 0;
+            width: 100%;
+        }
+
+        .slogan-background {
+            background-image: url('http://localhost:3845/assets/e83a6b33a5f384e5a9cd9ff81278c4e4bebd935c.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            inset: 0;
+        }
+
+        .slogan-text {
+            font-family: 'Cormorant', serif;
+            font-weight: bold;
+            font-size: 48px;
+            color: #000000;
+            position: absolute;
+            top: 207px;
+            left: 40px;
+            width: 390px;
+        }
+
+        /* Best Sellers */
+        .best-sellers-container {
+            background-color: #ffffff;
+            height: 825px;
+            position: absolute;
+            top: 1192px;
+            left: 0;
+            width: 100%;
+            overflow: clip;
+        }
+
+        .best-sellers-title {
+            font-family: 'Cormorant', serif;
+            font-weight: bold;
+            font-size: 48px;
+            color: #222222;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            white-space: pre;
+        }
+
+        .best-sellers-subtitle {
+            font-family: 'Pretendard', sans-serif;
+            font-size: 24px;
+            color: #222222;
+            position: absolute;
+            top: 98px;
+            left: 40px;
+            white-space: pre;
+        }
+
+        .card-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            gap: 130px;
+            align-items: center;
+            justify-content: flex-start;
+            position: absolute;
+            top: 235px;
+            left: 41px;
+        }
+
+        .card {
+            background-color: #f4ede2;
+            height: 354px;
+            overflow: clip;
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.08);
+            width: 260px;
+        }
+
+        /* Category Section */
+        .category-section-container {
+            background-color: #ffffff;
+            height: 825px;
+            position: absolute;
+            top: 2217px;
+            left: 0;
+            width: 100%;
+            overflow: clip;
+        }
+
+        .category-section-title {
+            font-family: 'Cormorant', serif;
+            font-weight: bold;
+            font-size: 48px;
+            color: #222222;
+            position: absolute;
+            top: 101px;
+            left: 559px;
+            white-space: pre;
+        }
+
+        .category-section-subtitle {
+            font-family: 'Pretendard', sans-serif;
+            font-size: 24px;
+            color: #222222;
+            position: absolute;
+            top: 159px;
+            left: 601px;
+            white-space: pre;
+        }
+
+        .category-container {
+            background-color: #f9f5f0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 240px;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            border-radius: 16px;
+            box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.06);
+            padding: 20px;
+            width: 200px;
+        }
+
+        .category-image {
+            width: 64px;
+            height: 64px;
+        }
+
+        .category-title {
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #473c33;
+            white-space: pre;
+        }
+
+        .category-description {
+            font-family: 'Pretendard', sans-serif;
+            font-size: 12px;
+            color: #7c6f65;
+            text-align: center;
+            width: 118px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const imgCleanser1 = "http://localhost:3845/assets/f04767ced4777ead84966534077c86a53b7268f7.png";
+        const imgImage1 = "http://localhost:3845/assets/0a8b4870f299e6e8efdc3f0acf78ed8d8dfa38d9.png";
+        const imgImage2 = "http://localhost:3845/assets/529ad7a0dd7765c89f862b5159e9373bb7ab999d.png";
+        const imgImage3 = "http://localhost:3845/assets/ccee8ce789bcd9d1ac26814747e3bd2cd5e50460.png";
+        const imgImage4 = "http://localhost:3845/assets/5c98fbe6cbc176df1103ab4fd871f42c077a8233.png";
+        const imgImage6 = "http://localhost:3845/assets/bc16c13a7f972d4563bc186cef99ac1129d09ccb.png";
+        const imgImage5 = "http://localhost:3845/assets/adb7a9b251565364f0a18e84d21c7d0621715177.png";
+        const imgLogo = "http://localhost:3845/assets/2b2858790bc64269dfc98c4c5423ac9b842a78f2.png";
+        const img = "http://localhost:3845/assets/e83a6b33a5f384e5a9cd9ff81278c4e4bebd935c.png";
+        const imgStar1 = "http://localhost:3845/assets/6228ad188cf337c0e8af78fd080f641b852fa2be.svg";
+        const imgVector1 = "http://localhost:3845/assets/3ac2c9599f6bcd5739ef7fbf043cec8ebade10e8.svg";
+
+        function Cleanser({ property1 = "cleanser1" }) {
+            const div = document.createElement('div');
+            div.style.position = "relative";
+            div.style.width = "100%";
+            div.style.height = "100%";
+
+            const innerDiv = document.createElement('div');
+            innerDiv.style.position = "absolute";
+            innerDiv.style.inset = "0";
+            innerDiv.style.backgroundPosition = "center";
+            innerDiv.style.backgroundSize = "cover";
+            innerDiv.style.backgroundRepeat = "no-repeat";
+            innerDiv.style.backgroundImage = `url('${imgCleanser1}')`;
+
+            div.appendChild(innerDiv);
+            return div;
+        }
+
+        function Card() {
+            const div = document.createElement('div');
+            div.className = "card";
+
+            const cleanserDiv = document.createElement('div');
+            cleanserDiv.style.position = "absolute";
+            cleanserDiv.style.left = "15px";
+            cleanserDiv.style.width = "230px";
+            cleanserDiv.style.height = "230px";
+            cleanserDiv.style.top = "20px";
+            cleanserDiv.appendChild(Cleanser({}));
+
+            const titleDiv = document.createElement('div');
+            titleDiv.style.position = "absolute";
+            titleDiv.style.left = "15px";
+            titleDiv.style.top = "260px";
+            titleDiv.style.width = "230px";
+            titleDiv.style.fontFamily = "'Pretendard', sans-serif";
+            titleDiv.style.fontWeight = "600";
+            titleDiv.style.fontSize = "16px";
+            titleDiv.style.color = "#222222";
+            titleDiv.innerHTML = `<p>Pure Foam Cleanser</p>`;
+
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.style.position = "absolute";
+            descriptionDiv.style.left = "15px";
+            descriptionDiv.style.top = "281px";
+            descriptionDiv.style.width = "230px";
+            descriptionDiv.style.fontFamily = "'Pretendard', sans-serif";
+            descriptionDiv.style.fontSize = "14px";
+            descriptionDiv.style.color = "rgba(136,136,136,0.53)";
+            descriptionDiv.innerHTML = `<p>Daily purifying cleanser with green tea extract</p>`;
+
+            const priceDiv = document.createElement('div');
+            priceDiv.style.position = "absolute";
+            priceDiv.style.left = "177px";
+            priceDiv.style.top = "325px";
+            priceDiv.style.fontFamily = "'Pretendard', sans-serif";
+            priceDiv.style.fontWeight = "bold";
+            priceDiv.style.fontSize = "16px";
+            priceDiv.style.color = "#bf6e4d";
+            priceDiv.innerHTML = `<p>₩19,000</p>`;
+
+            const ratingDiv = document.createElement('div');
+            ratingDiv.style.position = "absolute";
+            ratingDiv.style.height = "12px";
+            ratingDiv.style.left = "205px";
+            ratingDiv.style.top = "255px";
+            ratingDiv.style.width = "40px";
+            ratingDiv.style.overflow = "clip";
+
+            const starImg = document.createElement('img');
+            starImg.src = imgStar1;
+            starImg.style.width = "10px";
+            starImg.style.height = "10px";
+            starImg.style.position = "absolute";
+            starImg.style.left = "0";
+            starImg.style.top = "1px";
+
+            const ratingTextDiv = document.createElement('div');
+            ratingTextDiv.style.position = "absolute";
+            ratingTextDiv.style.left = "12px";
+            ratingTextDiv.style.top = "1px";
+            ratingTextDiv.style.fontFamily = "'Pretendard', sans-serif";
+            ratingTextDiv.style.fontWeight = "300";
+            ratingTextDiv.style.fontSize = "8px";
+            ratingTextDiv.style.color = "#222222";
+            ratingTextDiv.innerHTML = `<p>4.8 (98)</p>`;
+
+            ratingDiv.appendChild(starImg);
+            ratingDiv.appendChild(ratingTextDiv);
+
+            div.appendChild(cleanserDiv);
+            div.appendChild(titleDiv);
+            div.appendChild(descriptionDiv);
+            div.appendChild(priceDiv);
+            div.appendChild(ratingDiv);
+
+            return div;
+        }
+
+        function Component1({ property1 = "image 5" }) {
+            const div = document.createElement('div');
+            div.style.position = "relative";
+            div.style.width = "100%";
+            div.style.height = "100%";
+
+            let imageUrl;
+            if (property1 === "image 1") {
+                imageUrl = imgImage1;
+            } else if (property1 === "image 2") {
+                imageUrl = imgImage2;
+            } else if (property1 === "image 3") {
+                imageUrl = imgImage3;
+            } else if (property1 === "image 4") {
+                imageUrl = imgImage4;
+            } else if (property1 === "image 6") {
+                imageUrl = imgImage6;
+            } else {
+                imageUrl = imgImage5;
+            }
+
+            const innerDiv = document.createElement('div');
+            innerDiv.style.position = "absolute";
+            innerDiv.style.inset = "0";
+            innerDiv.style.backgroundPosition = "center";
+            innerDiv.style.backgroundSize = "cover";
+            innerDiv.style.backgroundRepeat = "no-repeat";
+            innerDiv.style.backgroundImage = `url('${imageUrl}')`;
+            div.appendChild(innerDiv);
+
+            return div;
+        }
+
+        function Category({image, title, description}) {
+            const div = document.createElement('div');
+            div.className = "category-container";
+
+            const imageDiv = document.createElement('div');
+            imageDiv.className = "category-image";
+            imageDiv.appendChild(Component1({property1: image}));
+
+            const titleDiv = document.createElement('div');
+            titleDiv.className = "category-title";
+            titleDiv.innerHTML = `<p>${title}</p>`;
+
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.className = "category-description";
+            descriptionDiv.innerHTML = `<p>${description}</p>`;
+
+            div.appendChild(imageDiv);
+            div.appendChild(titleDiv);
+            div.appendChild(descriptionDiv);
+
+            return div;
+        }
+
+        function Main() {
+            const div = document.createElement('div');
+            div.className = "main-container";
+
+            // Header
+            const headerContainer = document.createElement('div');
+            headerContainer.className = "header-container";
+            const headerContent = document.createElement('div');
+            headerContent.className = "header-content";
+            const logoContainer = document.createElement('div');
+            logoContainer.className = "logo-container";
+            const logoContent = document.createElement('div');
+            logoContent.className = "logo-content";
+            const logoImage = document.createElement('div');
+            logoImage.className = "logo-image";
+            const logoText = document.createElement('div');
+            logoText.className = "logo-text";
+            logoText.innerHTML = `<p>Belure</p>`;
+            logoContent.appendChild(logoImage);
+            logoContent.appendChild(logoText);
+            logoContainer.appendChild(logoContent);
+            headerContent.appendChild(logoContainer);
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = "button-container";
+            const loginButton = document.createElement('div');
+            loginButton.className = "login-button";
+            const loginButtonText = document.createElement('div');
+            loginButtonText.className = "login-button-text";
+            loginButtonText.innerHTML = `<p>Login</p>`;
+            loginButton.appendChild(loginButtonText);
+            const signupButton = document.createElement('div');
+            signupButton.className = "signup-button";
+            const signupButtonText = document.createElement('div');
+            signupButtonText.className = "signup-button-text";
+            signupButtonText.innerHTML = `<p>Sign up</p>`;
+            signupButton.appendChild(signupButtonText);
+            buttonContainer.appendChild(loginButton);
+            buttonContainer.appendChild(signupButton);
+            headerContent.appendChild(buttonContainer);
+            headerContainer.appendChild(headerContent);
+            div.appendChild(headerContainer);
+
+            // Nav
+            const navContainer = document.createElement('div');
+            navContainer.className = "nav-container";
+            const navContent = document.createElement('div');
+            navContent.className = "nav-content";
+            navContent.innerHTML = `
+                <div><p>Home</p></div>
+                <div><p>Collection</p></div>
+                <div><p>Best Picks</p></div>
+                <div><p>Promotion</p></div>
+                <div><p>Reviews</p></div>
+                <div><p>Cart</p></div>
+            `;
+            navContainer.appendChild(navContent);
+            div.appendChild(navContainer);
+
+            // Slogan
+            const sloganContainer = document.createElement('div');
+            sloganContainer.className = "slogan-container";
+            const sloganBackground = document.createElement('div');
+            sloganBackground.className = "slogan-background";
+            const sloganText = document.createElement('div');
+            sloganText.className = "slogan-text";
+            sloganText.innerHTML = `<p>Your true glow starts here</p>`;
+            sloganContainer.appendChild(sloganBackground);
+            sloganContainer.appendChild(sloganText);
+            div.appendChild(sloganContainer);
+
+            // Best Sellers
+            const bestSellersContainer = document.createElement('div');
+            bestSellersContainer.className = "best-sellers-container";
+            const bestSellersTitle = document.createElement('div');
+            bestSellersTitle.className = "best-sellers-title";
+            bestSellersTitle.innerHTML = `<p>Best Sellers</p>`;
+            const bestSellersSubtitle = document.createElement('div');
+            bestSellersSubtitle.className = "best-sellers-subtitle";
+            bestSellersSubtitle.innerHTML = `<p>가장 많은 사랑을 받은 제품을 만나보세요.</p>`;
+            const cardContainer = document.createElement('div');
+            cardContainer.className = "card-container";
+            for (let i = 0; i < 4; i++) {
+                cardContainer.appendChild(Card());
+            }
+            bestSellersContainer.appendChild(bestSellersTitle);
+            bestSellersContainer.appendChild(bestSellersSubtitle);
+            bestSellersContainer.appendChild(cardContainer);
+            div.appendChild(bestSellersContainer);
+
+            // Category Section
+            const categorySectionContainer = document.createElement('div');
+            categorySectionContainer.className = "category-section-container";
+            const categorySectionTitle = document.createElement('div');
+            categorySectionTitle.className = "category-section-title";
+            categorySectionTitle.innerHTML = `<p>OUR COLLECTION</p>`;
+            const categorySectionSubtitle = document.createElement('div');
+            categorySectionSubtitle.className = "category-section-subtitle";
+            categorySectionSubtitle.innerHTML = `<p>제품 카테고리별로 탐색해보세요.</p>`;
+            categorySectionContainer.appendChild(categorySectionTitle);
+            categorySectionContainer.appendChild(categorySectionSubtitle);
+
+            const categories = [
+                { top: '223px', left: '432px', image: 'image 1', title: 'Cleansers', description: '피부 본연의 결을 깨우는 첫 번째 단계' },
+                { top: '223px', left: '656px', image: 'image 2', title: 'Serums & Oils', description: '깊은 영양과 빛나는 윤기를 위한 집중 케어' },
+                { top: '223px', left: '880px', image: 'image 4', title: 'Gift Kits', description: '마음을 담아 전하는 고품격 뷰티 패키지' },
+                { top: '484px', left: '432px', image: 'image 5', title: 'Spa & Aroma', description: '향으로 채우는 힐링의 순간과 깊은 여운' },
+                { top: '484px', left: '656px', image: 'image 3', title: 'Mask Packs', description: '하루 끝, 피부에 선물하는 편안한 휴식' },
+                { top: '484px', left: '880px', image: 'image 6', title: 'Beauty Tools', description: '매일의 루틴을 특별하게, 부드러운 손길로' }
+            ];
+
+            categories.forEach(cat => {
+                const categoryElement = Category({image: cat.image, title: cat.title, description: cat.description});
+                categoryElement.style.top = cat.top;
+                categoryElement.style.left = cat.left;
+                categorySectionContainer.appendChild(categoryElement);
+            });
+
+            div.appendChild(categorySectionContainer);
+
+            return div;
+        }
+
+        document.getElementById('root').appendChild(Main());
+    </script>
+</body>
+</html>
